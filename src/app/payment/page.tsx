@@ -30,7 +30,8 @@ function PaymentContent() {
 
   const [step, setStep] = useState(1);
   const [showSuccess, setShowSuccess] = useState(false);
-  const [selectedPlan, setSelectedPlan] = useState<keyof typeof plans>("standard");
+  const [selectedPlan, setSelectedPlan] =
+    useState<keyof typeof plans>("standard");
 
   const [formData, setFormData] = useState({
     name: "",
@@ -84,7 +85,8 @@ function PaymentContent() {
     }
 
     if (currentStep === 4) {
-      if (!formData.cardNumber.trim()) newErrors.cardNumber = "Card number required";
+      if (!formData.cardNumber.trim())
+        newErrors.cardNumber = "Card number required";
       else if (formData.cardNumber.replace(/\s/g, "").length < 16)
         newErrors.cardNumber = "Invalid card number";
 
@@ -134,10 +136,8 @@ function PaymentContent() {
 
   return (
     <div className="min-h-screen bg-[#F5F2EC]">
-
       {/* ---------------- HERO ---------------- */}
       <section className="relative py-20 bg-gradient-to-br from-[#071E40] via-[#0F3641] to-[#071E40] text-center overflow-hidden">
-
         {/* Soft glowing background circles */}
         <div className="absolute inset-0 opacity-25 pointer-events-none">
           <div className="absolute top-[-4rem] right-[-3rem] w-[18rem] h-[18rem] bg-[#D4C9A1] blur-[120px] rounded-full"></div>
@@ -192,26 +192,40 @@ function PaymentContent() {
 
       {/* ---------------- FORM + SUMMARY GRID ---------------- */}
       <div className="container mx-auto px-4 pb-20 grid grid-cols-1 lg:grid-cols-3 gap-10">
-
         {/* ---------- Form Panel (Glassmorphic) ---------- */}
         <div className="lg:col-span-2">
           <div className="bg-white/50 backdrop-blur-xl border border-white/70 shadow-xl p-10 rounded-3xl">
-
             <AnimatePresence mode="wait">
-
               {/* ---------------- STEP 1 ---------------- */}
               {step === 1 && (
                 <StepWrapper key="step1">
                   <StepTitle>{t("payment.step1")}</StepTitle>
 
-                  <Input label={t("payment.name")} name="name" value={formData.name}
-                    onChange={handleChange} error={errors.name} placeholder="John Doe" />
+                  <Input
+                    label={t("payment.name")}
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    error={errors.name}
+                    placeholder="John Doe"
+                  />
 
-                  <Input label={t("payment.email")} name="email" value={formData.email}
-                    onChange={handleChange} error={errors.email} placeholder="john@example.com" />
+                  <Input
+                    label={t("payment.email")}
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    error={errors.email}
+                    placeholder="john@example.com"
+                  />
 
-                  <Input label={t("payment.phone")} name="phone" value={formData.phone}
-                    onChange={handleChange} placeholder="+49 123 456 7890" />
+                  <Input
+                    label={t("payment.phone")}
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleChange}
+                    placeholder="+49 123 456 7890"
+                  />
                 </StepWrapper>
               )}
 
@@ -220,8 +234,14 @@ function PaymentContent() {
                 <StepWrapper key="step2">
                   <StepTitle>{t("payment.step2")}</StepTitle>
 
-                  <Input label={t("payment.address")} name="address" value={formData.address}
-                    onChange={handleChange} error={errors.address} placeholder="Friedrichstraße 123" />
+                  <Input
+                    label={t("payment.address")}
+                    name="address"
+                    value={formData.address}
+                    onChange={handleChange}
+                    error={errors.address}
+                    placeholder="Friedrichstraße 123"
+                  />
 
                   <div>
                     <label className="block text-sm font-medium text-[#071E40] mb-2">
@@ -233,14 +253,26 @@ function PaymentContent() {
                       onChange={handleChange}
                       className="w-full px-4 py-3 rounded-xl border border-gray-300 bg-white focus:border-[#476A6F] focus:ring-2 focus:ring-[#476A6F]/20"
                     >
-                      <option value="apartment">{t("payment.propertyType.apartment")}</option>
-                      <option value="house">{t("payment.propertyType.house")}</option>
-                      <option value="commercial">{t("payment.propertyType.commercial")}</option>
+                      <option value="apartment">
+                        {t("payment.propertyType.apartment")}
+                      </option>
+                      <option value="house">
+                        {t("payment.propertyType.house")}
+                      </option>
+                      <option value="commercial">
+                        {t("payment.propertyType.commercial")}
+                      </option>
                     </select>
                   </div>
 
-                  <Input label={t("payment.propertySize")} name="propertySize" value={formData.propertySize}
-                    onChange={handleChange} error={errors.propertySize} placeholder="75" />
+                  <Input
+                    label={t("payment.propertySize")}
+                    name="propertySize"
+                    value={formData.propertySize}
+                    onChange={handleChange}
+                    error={errors.propertySize}
+                    placeholder="75"
+                  />
                 </StepWrapper>
               )}
 
@@ -261,8 +293,12 @@ function PaymentContent() {
                     >
                       <div className="flex items-center justify-between">
                         <div>
-                          <h3 className="font-semibold text-[#071E40] text-lg">{plan.name}</h3>
-                          <p className="text-[#476A6F] text-sm">€{plan.price}/month</p>
+                          <h3 className="font-semibold text-[#071E40] text-lg">
+                            {plan.name}
+                          </h3>
+                          <p className="text-[#476A6F] text-sm">
+                            €{plan.price}/month
+                          </p>
                         </div>
 
                         <div
@@ -272,7 +308,9 @@ function PaymentContent() {
                               : "border-gray-400"
                           }`}
                         >
-                          {selectedPlan === key && <Check className="w-4 h-4 text-white" />}
+                          {selectedPlan === key && (
+                            <Check className="w-4 h-4 text-white" />
+                          )}
                         </div>
                       </div>
                     </div>
@@ -289,7 +327,7 @@ function PaymentContent() {
                     label={t("payment.cardNumber")}
                     name="cardNumber"
                     value={formData.cardNumber}
-                    onChange={(e) =>
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                       setFormData({
                         ...formData,
                         cardNumber: formatCardNumber(e.target.value),
@@ -322,12 +360,10 @@ function PaymentContent() {
                   </div>
                 </StepWrapper>
               )}
-
             </AnimatePresence>
 
             {/* ---------------- BOTTOM BUTTONS ---------------- */}
             <div className="flex justify-between mt-10 pt-8 border-t border-white/40">
-
               {/* Back Button */}
               {step > 1 ? (
                 <button
@@ -360,45 +396,48 @@ function PaymentContent() {
                 </button>
               )}
             </div>
-
           </div>
         </div>
 
         {/* ---------- SUMMARY PANEL (Glassmorphic) ---------- */}
         <div className="lg:col-span-1">
           <div className="bg-white/50 backdrop-blur-xl border border-white/70 shadow-xl p-8 rounded-3xl sticky top-24">
-
             <h3 className="text-lg font-semibold text-[#071E40] mb-6">
               {t("payment.summary")}
             </h3>
 
             <div className="space-y-4">
-
               <SummaryRow label="Plan" value={plans[selectedPlan].name} />
-              <SummaryRow label="Monthly Fee" value={`€${plans[selectedPlan].price}`} />
+              <SummaryRow
+                label="Monthly Fee"
+                value={`€${plans[selectedPlan].price}`}
+              />
 
               <div className="border-t border-white/50 pt-4">
                 <div className="flex justify-between">
-                  <span className="font-semibold text-[#071E40]">{t("payment.total")}</span>
+                  <span className="font-semibold text-[#071E40]">
+                    {t("payment.total")}
+                  </span>
                   <span className="font-bold text-xl text-[#071E40]">
                     €{plans[selectedPlan].price}
                   </span>
                 </div>
                 <p className="text-xs text-[#476A6F] mt-1">per month</p>
               </div>
-
             </div>
           </div>
         </div>
-
       </div>
 
       {/* ---------- SUCCESS POPUP ---------- */}
-      <SuccessModal show={showSuccess} t={t} onClose={() => {
-        setShowSuccess(false);
-        window.location.href = "/";
-      }} />
-
+      <SuccessModal
+        show={showSuccess}
+        t={t}
+        onClose={() => {
+          setShowSuccess(false);
+          window.location.href = "/";
+        }}
+      />
     </div>
   );
 }
@@ -423,13 +462,25 @@ function StepWrapper({ children }: any) {
 }
 
 function StepTitle({ children }: any) {
-  return <h2 className="text-xl font-semibold text-[#071E40] mb-4">{children}</h2>;
+  return (
+    <h2 className="text-xl font-semibold text-[#071E40] mb-4">{children}</h2>
+  );
 }
 
-function Input({ label, name, value, onChange, placeholder, error, maxLength }: any) {
+function Input({
+  label,
+  name,
+  value,
+  onChange,
+  placeholder,
+  error,
+  maxLength,
+}: any) {
   return (
     <div>
-      <label className="block text-sm font-medium text-[#071E40] mb-2">{label}</label>
+      <label className="block text-sm font-medium text-[#071E40] mb-2">
+        {label}
+      </label>
       <input
         name={name}
         value={value}
@@ -496,7 +547,9 @@ function SuccessModal({ show, onClose, t }: any) {
                   style={{
                     width: 10,
                     height: 10,
-                    backgroundColor: ["#D4C9A1", "#071E40", "#476A6F"][Math.floor(Math.random()*3)],
+                    backgroundColor: ["#D4C9A1", "#071E40", "#476A6F"][
+                      Math.floor(Math.random() * 3)
+                    ],
                     borderRadius: Math.random() > 0.5 ? "50%" : "0",
                   }}
                 />
@@ -512,7 +565,9 @@ function SuccessModal({ show, onClose, t }: any) {
                 {t("payment.success.title")}
               </h2>
 
-              <p className="text-[#476A6F] mb-8">{t("payment.success.message")}</p>
+              <p className="text-[#476A6F] mb-8">
+                {t("payment.success.message")}
+              </p>
 
               <button
                 onClick={onClose}
@@ -532,7 +587,13 @@ function SuccessModal({ show, onClose, t }: any) {
 
 export default function PaymentPage() {
   return (
-    <Suspense fallback={<div className="min-h-screen flex items-center justify-center">Loading...</div>}>
+    <Suspense
+      fallback={
+        <div className="min-h-screen flex items-center justify-center">
+          Loading...
+        </div>
+      }
+    >
       <PaymentContent />
     </Suspense>
   );
